@@ -26,13 +26,13 @@ class Swipe extends StatelessWidget {
 
   /// mininum displacement of pointer on the vertical axis
   /// to be counted as a swipe
-  /// 
+  ///
   /// Default: 100
   final double verticalMinDisplacement;
 
-  /// minimum absolute velocity of pointer moving on the vertical axis 
+  /// minimum absolute velocity of pointer moving on the vertical axis
   /// to be counted as a swipe
-  /// 
+  ///
   /// Default: 300
   final double verticalMinVelocity;
 
@@ -41,13 +41,13 @@ class Swipe extends StatelessWidget {
 
   /// mininum displacement of pointer on the horizontal axis
   /// to be counted as a swipe
-  /// 
+  ///
   /// Default: 100
   final double horizontalMinDisplacement;
 
-  /// minimum absolute velocity of pointer moving on the horizontal axis 
+  /// minimum absolute velocity of pointer moving on the horizontal axis
   /// to be counted as a swipe
-  /// 
+  ///
   /// Default: 300
   final double horizontalMinVelocity;
 
@@ -67,7 +67,6 @@ class Swipe extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     DragStartDetails? startVerticalDragDetails;
     DragUpdateDetails? updateVerticalDragDetails;
 
@@ -83,25 +82,25 @@ class Swipe extends StatelessWidget {
         updateVerticalDragDetails = dragDetails;
       },
       onVerticalDragEnd: (endDetails) {
-        if (startVerticalDragDetails != null && updateVerticalDragDetails != null) {
+        if (startVerticalDragDetails != null &&
+            updateVerticalDragDetails != null) {
           double dx = (updateVerticalDragDetails!.globalPosition.dx -
-            startVerticalDragDetails!.globalPosition.dx).abs();
+                  startVerticalDragDetails!.globalPosition.dx)
+              .abs();
           double dy = (updateVerticalDragDetails!.globalPosition.dy -
-              startVerticalDragDetails!.globalPosition.dy).abs();
+                  startVerticalDragDetails!.globalPosition.dy)
+              .abs();
           double velocity = endDetails.primaryVelocity ?? 0.0;
 
-          if (dx > verticalMaxWidthThreshold) 
-            return;
-          if (dy < verticalMinDisplacement) 
-            return;
-          if (velocity.abs() < verticalMinVelocity)
-            return;
+          if (dx > verticalMaxWidthThreshold) return;
+          if (dy < verticalMinDisplacement) return;
+          if (velocity.abs() < verticalMinVelocity) return;
 
           if (velocity < 0) {
             //Swipe Up
             onSwipeUp?.call();
           }
-          
+
           if (velocity > 0) {
             //Swipe Down
             onSwipeDown?.call();
@@ -115,25 +114,25 @@ class Swipe extends StatelessWidget {
         updateHorizontalDragDetails = dragDetails;
       },
       onHorizontalDragEnd: (endDetails) {
-        if (startHorizontalDragDetails != null && updateHorizontalDragDetails != null) {
+        if (startHorizontalDragDetails != null &&
+            updateHorizontalDragDetails != null) {
           double dx = (updateHorizontalDragDetails!.globalPosition.dx -
-              startHorizontalDragDetails!.globalPosition.dx).abs();
+                  startHorizontalDragDetails!.globalPosition.dx)
+              .abs();
           double dy = (updateHorizontalDragDetails!.globalPosition.dy -
-              startHorizontalDragDetails!.globalPosition.dy).abs();
+                  startHorizontalDragDetails!.globalPosition.dy)
+              .abs();
           double velocity = endDetails.primaryVelocity ?? 0.0;
-          
-          if (dy > horizontalMaxHeightThreshold) 
-            return;
-          if (dx < horizontalMinDisplacement) 
-            return;
-          if (velocity.abs() < horizontalMinVelocity)
-            return;
+
+          if (dy > horizontalMaxHeightThreshold) return;
+          if (dx < horizontalMinDisplacement) return;
+          if (velocity.abs() < horizontalMinVelocity) return;
 
           if (velocity < 0) {
             //Swipe Left
             onSwipeLeft?.call();
           }
-          
+
           if (velocity > 0) {
             //Swipe Right
             onSwipeRight?.call();

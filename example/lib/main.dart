@@ -35,9 +35,11 @@ class _SwipePageState extends State<SwipePage> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Center(
-            child: Text(_message, style: TextStyle(
-              color: Colors.white, fontSize: 32,
-            )),
+            child: Text(_message,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                )),
           ),
         ),
         onSwipeUp: () {
